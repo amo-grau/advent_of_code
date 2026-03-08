@@ -17,3 +17,12 @@ TEST(TestBankBuilder, StringWithMultipleValues){
 
     EXPECT_EQ(Bank(std::vector<int> {1, 2, 3, 4, 5}).consumption(), result.consumption());
 }
+
+TEST(TestBankBuilder, BuildMultipleBanksFromText){
+    auto builder = BankBuilder();
+
+    auto result = builder.build_from_multiple("123\n45");
+
+    EXPECT_EQ(Bank(std::vector<int> {1, 2, 3}).consumption(), result[0].consumption());
+    EXPECT_EQ(Bank(std::vector<int> {4, 5}).consumption(), result[1].consumption());
+}
