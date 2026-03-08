@@ -12,4 +12,6 @@ class Bank {
     private:
         std::vector<int> batteries;
         int active_batteries_count;
+
+        void select_indexes(std::vector<int>& current_selection, int missing_selection_amount);
 };
