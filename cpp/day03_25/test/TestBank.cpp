@@ -7,19 +7,19 @@ TEST(TestBank, LessThanTwoBateriesInBankRaisesException) {
   EXPECT_THROW(Bank{bateries}, std::invalid_argument);
 }
 
-TEST(TestBank, TwoBatteriesInBankProvidesTheSumOfBothValues) {
+TEST(TestBank, TwoBatteriesInBankProvidesCombinationOfBothValues) {
   std::vector<int> batteries = {1, 3};
   auto bank = Bank(batteries);
   auto result = bank.consumption();
 
-  EXPECT_EQ(4, result);
+  EXPECT_EQ(13, result);
 }
 
-TEST(TestBank, SelectTheTwoBatteriesWithHighestJoltage) {
+TEST(TestBank, MaximumJoltageCombinationSelected) {
   std::vector<int> batteries = {1, 3, 1, 5};
   auto bank = Bank(batteries);
 
   auto result = bank.consumption();
 
-  EXPECT_EQ(8, result);
+  EXPECT_EQ(35, result);
 }
