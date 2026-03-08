@@ -1,15 +1,14 @@
-add_executable(TestDay03_25)
-
-target_sources(TestDay03_25
+add_executable(TestBank)
+target_sources(TestBank
     PRIVATE
-        TestDay03_25.cpp
+        TestBank.cpp
 )
 
 find_package(GTest REQUIRED)
-target_link_libraries(TestDay03_25
+target_link_libraries(TestBank
     PRIVATE
-        Day03_25_lib
+        Bank
         GTest::gtest_main
 )   
 
-gtest_discover_tests(TestDay03_25)
+gtest_discover_tests(TestBank)

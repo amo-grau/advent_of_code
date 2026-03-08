@@ -3,5 +3,16 @@ project(AdventOfCode)
 
 enable_testing()
 
-add_subdirectory(src)
+add_library(Bank)
+target_sources(Bank
+    PRIVATE
+        src/Bank.cpp
+
+    PUBLIC
+        FILE_SET HEADERS
+        BASE_DIRS include
+        FILES
+            include/Bank.h
+)
+
 add_subdirectory(test)
