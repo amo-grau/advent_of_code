@@ -18,3 +18,13 @@ target_sources(Bank
 )
 
 add_subdirectory(test)
+
+add_executable(Day3)
+target_sources(Day3
+    PRIVATE
+        src/main.cpp
+)
+target_link_libraries(Day3
+    PRIVATE
+        Bank
+)
