@@ -4,31 +4,39 @@
 #include <algorithm>
 #include <iostream>
 
-Bank::Bank(std::vector<int> batteries){
-    active_batteries_count = 2;
-
+Bank::Bank(std::vector<int> batteries, int active_batteries_count){
     if (batteries.size() < active_batteries_count)
         throw std::invalid_argument("...");
+
     Bank::batteries = batteries;
+    Bank::active_batteries_count = active_batteries_count;
 }
 
-int Bank::maximum_joltage(){
+long long Bank::maximum_joltage(){
     std::vector<int> selected_indexes = {};
-    select_indexes(selected_indexes, 1);
+    select_indexes(selected_indexes, active_batteries_count - 1);
     
-    std::vector<int> selected_batteries = {
-        batteries[selected_indexes[0]], 
-        batteries[selected_indexes[1]]
-    };
-    return calculate_joltage_of(selected_batteries);
+    std::vector<int> selected_batteries_indexes;
+    for(int i = 0; i < selected_indexes.size(); i++){
+        int index = selected_indexes[i];
+        selected_batteries_indexes.push_back(batteries[index]);
+    }
+
+    std::cout << "selected_indexes: ";
+    for (int n : selected_indexes) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+    return calculate_joltage_of(selected_batteries_indexes);
 }
 
-int Bank::calculate_joltage_of(std::vector<int> selection_of_batteries)
+long long Bank::calculate_joltage_of(std::vector<int> selection_of_batteries)
 {
-    auto result = 0;
-    auto multiplier = 1;
+    long long result = 0;
+    long long multiplier = 1;
     for (int i = selection_of_batteries.size() - 1; i >= 0; i--)
     {
+        std::cout << "    multiplier: " << multiplier << " battery_joltage: " << selection_of_batteries[i] << std::endl;
         result += multiplier * selection_of_batteries[i];
         multiplier *= 10;
     }

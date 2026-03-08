@@ -3,11 +3,11 @@
 
 class Bank {
     public:
-        Bank(std::vector<int> batteries);
+        Bank(std::vector<int> batteries, int active_batteries_count=2);
 
-        int maximum_joltage();
+        long long maximum_joltage();
 
-        int calculate_joltage_of(std::vector<int> selection_of_batteries);
+        long long calculate_joltage_of(std::vector<int> selection_of_batteries);
 
     private:
         std::vector<int> batteries;
