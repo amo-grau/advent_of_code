@@ -7,7 +7,7 @@ TEST(TestBankBuilder, StringWithTwoValues) {
 
     auto result = builder.build_from("12");
 
-    EXPECT_EQ(Bank(std::vector<int> {1, 2}).consumption(), result.consumption());
+    EXPECT_EQ(Bank(std::vector<int> {1, 2}).maximum_joltage(), result.maximum_joltage());
 }
 
 TEST(TestBankBuilder, StringWithMultipleValues){
@@ -15,7 +15,7 @@ TEST(TestBankBuilder, StringWithMultipleValues){
 
     auto result = builder.build_from("12345");
 
-    EXPECT_EQ(Bank(std::vector<int> {1, 2, 3, 4, 5}).consumption(), result.consumption());
+    EXPECT_EQ(Bank(std::vector<int> {1, 2, 3, 4, 5}).maximum_joltage(), result.maximum_joltage());
 }
 
 TEST(TestBankBuilder, BuildMultipleBanksFromText){
@@ -23,6 +23,6 @@ TEST(TestBankBuilder, BuildMultipleBanksFromText){
 
     auto result = builder.build_from_multiple("123\n45");
 
-    EXPECT_EQ(Bank(std::vector<int> {1, 2, 3}).consumption(), result[0].consumption());
-    EXPECT_EQ(Bank(std::vector<int> {4, 5}).consumption(), result[1].consumption());
+    EXPECT_EQ(Bank(std::vector<int> {1, 2, 3}).maximum_joltage(), result[0].maximum_joltage());
+    EXPECT_EQ(Bank(std::vector<int> {4, 5}).maximum_joltage(), result[1].maximum_joltage());
 }

@@ -12,7 +12,7 @@ Bank::Bank(std::vector<int> batteries){
     Bank::batteries = batteries;
 }
 
-int Bank::consumption(){
+int Bank::maximum_joltage(){
     std::vector<int> selected_indexes = {};
     select_indexes(selected_indexes, 1);
     
@@ -36,14 +36,20 @@ int Bank::calculate_joltage_of(std::vector<int> selection_of_batteries)
     return result;
 }
 
-void Bank::select_indexes(std::vector<int>& current_selection, int missing_selection_amount){
-    int starting_index = 0;
-    if (current_selection.size() > 0){
-        starting_index = current_selection.back() + 1;
-    }
+void Bank::select_indexes(std::vector<int>& current_selection, int missing_selection_amount_after_iteration){
+    int selected_index = select_next_index(missing_selection_amount_after_iteration, current_selection);
+    current_selection.push_back(selected_index);
     
+    if (missing_selection_amount_after_iteration != 0){
+        select_indexes(current_selection, missing_selection_amount_after_iteration - 1);
+    }
+}
+
+int Bank::select_next_index(int missing_selection_amount_after_iteration, std::vector<int> current_selection){
+    int starting_index = select_starting_index_in_iteration(current_selection);
     int selected_index = starting_index;
-    for (int i = starting_index; i < batteries.size() - missing_selection_amount; i++){
+    
+    for (int i = starting_index; i < batteries.size() - missing_selection_amount_after_iteration; i++){
         auto current_max = batteries[selected_index];
         auto current_value = batteries[i];
         
@@ -51,10 +57,13 @@ void Bank::select_indexes(std::vector<int>& current_selection, int missing_selec
             selected_index = i;
         }
     }
+
+    return selected_index;
+}
     
-    current_selection.push_back(selected_index);
-    
-    if (missing_selection_amount != 0){
-        select_indexes(current_selection, missing_selection_amount - 1);
+int Bank::select_starting_index_in_iteration(std::vector<int> current_selection){
+    if (current_selection.size() > 0){
+        return current_selection.back() + 1;
     }
+    return 0;
 }

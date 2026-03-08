@@ -10,7 +10,7 @@ int main(){
     auto banks = BankBuilder().build_from_multiple(input);
     auto result = 0;
     for (int i = 0; i < banks.size(); i++){
-        result += banks[i].consumption();
+        result += banks[i].maximum_joltage();
     }
 
     std::cout << result << std::endl;
