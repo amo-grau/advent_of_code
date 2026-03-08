@@ -2,6 +2,7 @@ add_executable(TestBank)
 target_sources(TestBank
     PRIVATE
         TestBank.cpp
+        TestBankBuilder.cpp
 )
 
 find_package(GTest REQUIRED)

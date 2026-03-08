@@ -1,3 +1,6 @@
+#pragma once
+#include <vector>
+
 class Bank {
     public:
         Bank(std::vector<int> batteries);
