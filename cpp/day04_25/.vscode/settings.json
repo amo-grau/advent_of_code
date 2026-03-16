@@ -1,0 +1,10 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".*\\.(cpp|h|hpp)$",
+                "cmd": "cd ${workspaceFolder}/build && make && ./run_unit_tests"
+            }
+        ]
+    }
+}
